@@ -1,0 +1,256 @@
+{
+    "concessionarias" : {
+        "cApFernaoDias": {
+            "title": "AUTOPISTA FERNÃO DIAS"
+        },
+        "cApFluminense": {
+            "title": "AUTOPISTA FLUMINENSE"
+        },
+        "cApLitoralSul": {
+            "title": "AUTOPISTA LITORAL SUL"
+        },
+        "cApPlanaltoSul": {
+            "title": "AUTOPISTA PLANALTO SUL"
+        },
+        "cApRegisBittencourt": {
+            "title": "AUTOPISTA REGIS BITTENCOURT"
+        },
+        "cConcebra": {
+            "title": "CONCEBRA"
+        },
+        "cConcer": {
+            "title": "CONCER"
+        },
+        "cViaBrasil": {
+            "title": "CONCESSIONÁRIA VIA BRASIL BR-163"
+        },
+        "cCro": {
+            "title": "CRO"
+        },
+        "cEco050": {
+            "title": "ECO050"
+        },
+        "cEco101": {
+            "title": "ECO101 CONCESSIONARIA DE RODOVIAS S/A"
+        },
+        "cEcoponte": {
+            "title": "ECOPONTE"
+        },
+        "cEcoriominas": {
+            "title": "ECORIOMINAS"
+        },
+        "cEcosul": {
+            "title": "ECOSUL"
+        },
+        "cEcoviasDoAraguaia": {
+            "title": "ECOVIAS DO ARAGUAIA"
+        },
+        "cEcoviasDoCerrado": {
+            "title": "ECOVIAS DO CERRADO"
+        },
+        "cSistemaRodRioSP": {
+            "title": "HOLDING DO SISTEMA RODOVIARIO RIO - SAO PAULO S.A."
+        },
+        "cMsvia": {
+            "title": "MSVIA"
+        },
+        "cRodoviaDoAco": {
+            "title": "RODOVIA DO AÇO"
+        },
+        "cTransbrasiliana": {
+            "title": "TRANSBRASILIANA"
+        },
+        "cVia040": {
+            "title": "VIA 040"
+        },
+        "cViaBahia": {
+            "title": "VIA BAHIA"
+        },
+        "cViaCosteira": {
+            "title": "VIA COSTEIRA"
+        },
+        "cViaSul": {
+            "title": "VIA SUL"
+        }
+    },
+    "layers": {
+        "sedesMunicipais": {
+            "title": "Sedes Municipais",
+            "url": "",
+            "nomeLayerPostgis": "bdgeo_postgis:SEDES_MUNICIPAIS",
+            "permitirFiltroPorConcessionaria": false
+        },
+        "municipios": {
+            "title": "Municípios",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "dados_dos_municipios",
+            "permitirFiltroPorConcessionaria": false
+        },
+        "regioes": {
+            "title": "Regiões",
+            "url": "",
+            "nomeLayerPostgis": "bdgeo_postgis:REGIOES",
+            "permitirFiltroPorConcessionaria": false
+        },
+        "dadosdaedificacaooperacional": {
+            "title": "Edificação Operacional",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_da_edificacao_operacional",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdapracasdePedagio": {
+            "title": "Praças de Pedágio",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_das_pracas_de_pedagio",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdadeteccaoAltura": {
+            "title": "Detecção e Estação Meteorológica",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_deteccao_altura",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "testeCFTV": {
+            "title": "CFTV",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_dos_cftvs",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdaSAT": {
+            "title": "SAT",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_dos_equipamentos_sensoriamento_de_trafego",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdaequipamentoPMVS": {
+            "title": "Painel de Mensagem Variavel (PMV)",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_dos_pmvs",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdaPRFS": {
+            "title": "Posto da PRF",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_dos_postos_prfs",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdoPPVS": {
+            "title": "Posto de Pesagem Veicular (PPV)",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_dos_ppvs",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosKmMarginal": {
+            "title": "Dados do KM Marginal",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_dos_quilometro_marginal",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosKmPrincipal": {
+            "title": "Dados do KM Principal",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_dos_quilometro_principal",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdosRadares": {
+            "title": "Radar",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_dos_radares",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdafibraotica": {
+            "title": "Fibra Ótica",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_da_fibra_otic",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdailuminacao": {
+            "title": "Dados da Iluminação",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_da_iluminacao",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdoTracado": {
+            "title": "Traçado",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_do_tracado",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdoPerfildoTerreno": {
+            "title": "Perfil do Terreno",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_perfil_do_terreno",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdosTipodePavimento": {
+            "title": "Tipo de Pavimento",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_tipo_do_pavimento",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdosTipodeFaixa": {
+            "title": "Tipo de Faixa",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_tipo_faixa",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "dadosdoUsodoSolo": {
+            "title": "Uso do Solo",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:dados_uso_do_solo",
+            "permitirFiltroPorConcessionaria": true
+        },
+        "tracadoConcessoes": {
+            "title": "Traçado Concessões",
+            "url": "{{URL}}",
+            "nomeLayerPostgis": "ne:tracado_antt_rodovias_concedidas",
+            "permitirFiltroPorConcessionaria": true
+        }
+
+    },
+    "rodovia_uf" : {
+        "ACRE" : {"title": "AC"},
+        "ALAGOAS" : {"title": "AL"},
+        "AMAPA" : {"title": "AP"},
+        "AMAZONAS" : {"title": "AM"},
+        "BAHIA" : {"title": "BA"},
+        "CEARA" : {"title": "CE"},
+        "DISTRITO FEDERAL" : {"title": "DF"},
+        "ESPIRITO SANTO" : {"title": "ES"},
+        "GOIAS" : {"title": "GO"},
+        "MARANHAO" : {"title": "MA"},
+        "MATO GROSSO" : {"title": "MT"},
+        "MATO GROSSO DO SUL" : {"title": "MS"},
+        "MINAS GERAIS" : {"title": "MG"},
+        "PARA" : {"title": "PA"},
+        "PARAIBA" : {"title": "PB"},
+        "PARANA" : {"title": "PR"},
+        "PERNAMBUCO" : {"title": "PE"},
+        "PIAUI" : {"title": "PI"},
+        "RIO DE JANEIRO" : {"title": "RJ"},
+        "RIO GRANDE DO NORTE" : {"title": "RN"},
+        "RIO GRANDE DO SUL" : {"title": "RS"},
+        "RONDONIA" : {"title": "RO"},
+        "RORAIMA" : {"title": "RR"},
+        "SANTA CATARINA" : {"title": "SC"},
+        "SAO PAULO" : {"title": "SP"},
+        "SERGIPE" : {"title": "SE"},
+        "TOCANTINS" : {"title": "TO"}
+
+    },
+    "rodovias" : {
+        "BR-101": { "title": "BR-101" },
+        "BR-116": { "title": "BR-116" },
+        "BR-392": { "title": "BR-392" },
+        "BR-163": { "title": "BR-163" },
+        "BR-393": { "title": "BR-393" },
+        "BR-381": { "title": "BR-381" },
+        "BR-153": { "title": "BR-153" },
+        "BR-262": { "title": "BR-262" },
+        "BR-324": { "title": "BR-324" }
+    },
+    "sentidos" : {
+        "Crescente" : {"title": "Crescente"},
+        "Decrescente" : {"title": "Decrescente"}
+    }
+}

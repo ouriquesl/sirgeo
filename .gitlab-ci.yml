@@ -1,0 +1,143 @@
+image: docker:19.03
+
+stages:
+  - dependence
+  - test
+  - build
+  - deploy
+  - rancher-deploy
+  - clean
+
+variables:
+  IMAGE_NAME: $ANTT_CI_REGISTRY_HOST/sirgeo/$CI_PROJECT_NAME
+  DOCKER_DRIVER: overlay
+  GIT_SUBMODULE_STRATEGY: recursive
+  GIT_SUBMODULE_UPDATE_FLAGS: --jobs 4
+  TAG: '0.0.1'
+  K8S_HOST: https://rancher-eks.antt.gov.br/k8s/clusters/c-k5p7z/apis/apps/v1
+  K8S_DEPLOYMENT: namespaces/sirgeo/deployments/sirgeo-web
+
+.semver:
+  stage: deploy
+  image: docker:stable
+  tags:
+    - RunnerWebSIS02
+  script:
+    - docker run --rm -u $(id -u):$(id -g) --name semver -v $(pwd):/code walkeralencar/semver:latest
+    - TAG=$(git describe --tags --match "[0-9]*.[0-9]*.[0-9]*" --abbrev=0)
+
+.docker-build:
+  stage: build
+  image: docker:stable
+  variables:
+    IMAGE_TAG: $IMAGE_NAME:$CI_COMMIT_REF_SLUG
+  tags:
+    - RunnerWebSIS01
+  before_script:
+    - docker login -u $ANTT_CI_REGISTRY_USER --password $ANTT_CI_REGISTRY_PASSWORD $ANTT_CI_REGISTRY_HOST
+  script:
+    - docker build -t $IMAGE_TAG --build-arg VERSION=$CI_COMMIT_REF_SLUG .
+    - docker push $IMAGE_TAG
+
+.docker-build-production:
+  stage: build
+  image: docker:stable
+  tags:
+    - RunnerWebSIS01
+  before_script:
+    - docker login -u $ANTT_CI_REGISTRY_USER --password $ANTT_CI_REGISTRY_PASSWORD $ANTT_CI_REGISTRY_HOST
+  script:
+    - docker build -t $IMAGE_NAME:$TAG --build-arg VERSION=$TAG .
+    - docker push $IMAGE_NAME:$TAG
+
+ESLint:
+  stage: test
+  image: node:16
+  tags:
+    - RunnerWebSIS01
+  script:
+    - yarn i -g eslint
+    - node_modules/eslint/bin/eslint.js --fix .
+  rules:
+  - exists:
+    - .eslintrc.json
+
+unit-test:
+  stage: test
+  image: node:16
+  tags:
+    - RunnerWebSIS01
+  script:
+    - yarn test --passWithNoTests
+  allow_failure: true
+  rules:
+    - exists:
+      - src/**/__tests__/**/*.js
+
+cache:
+  untracked: true
+  key: "$CI_BUILD_REF_NAME"
+  paths:
+    - ./node_modules
+
+docker-build:
+  stage: build
+  extends: .docker-build
+  except:
+    - main
+    - tags
+  before_script: 
+    - !reference [.docker-build, before_script]
+  script: 
+    - !reference [.docker-build, script]
+
+docker-build-production:
+  stage: build
+  extends: .docker-build-production
+  except:
+    - tags
+  only:
+    - main
+  before_script: 
+#    - !reference [.semver, script]
+    - !reference [.docker-build-production, before_script]
+  script: 
+    - !reference [.docker-build-production, script]
+
+# rancher-deploy:
+#   stage: rancher-deploy
+#   except:
+#     - tags
+#   only:
+#     - main
+#   needs:
+#     - job: docker-build-production
+#   tags:
+#     - RunnerWebSIS01
+#   script:
+#     - |
+#       TAG=$(git tag -l | tail -1)
+#       IMAGE_TAG=$IMAGE_NAME:$TAG
+#       curl -u "$CATTLE_ACCESS_KEY:$CATTLE_SECRET_KEY" -X PATCH -H "Accept: application/json" -H "Content-Type: application/json-patch+json" $K8S_HOST/$K8S_DEPLOYMENT -d '[{"op": "replace", "path": "/spec/template/spec/containers/0/image", "value": "'"$IMAGE_TAG"'"}]'
+
+clean:
+  stage: clean
+  except:
+    - main
+  needs:
+    - job: docker-build
+      optional: true
+    - job: docker-build-production
+      optional: true
+  tags:
+    - RunnerWebSIS01
+  script:
+    - echo "Cleaning up"
+    - docker container prune -f
+    - docker image prune -f
+    - docker volume prune -f
+    - docker system prune -a -f
+    - docker builder prune -f 
+    - rm -rf "%CACHE_PATH%/%CI_PIPELINE_ID%"
+  when: always
+

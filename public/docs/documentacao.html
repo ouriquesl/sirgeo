@@ -1,0 +1,1466 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Documentação</title>
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- FONT -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!--PRINCIPAL-->
+    <link rel="stylesheet" href="../css/global.min.css">
+    <!-- SELECT -->
+    <link rel="stylesheet" href="../css/select2.min.css">
+    <!-- ASIDE -->
+    <link rel="stylesheet" href="../css/aside.min.css">
+    <!-- MESSAGE -->
+    <link rel="stylesheet" href="../css/toastr.min.css">
+    <!-- INTERNAL -->
+    <link rel="stylesheet" href="../css/internal.min.css">
+    <!-- DATE PICKER -->
+    <link rel="stylesheet" href="../css/tempusdominus-bootstrap-4.min.css">
+
+    <!-- MOMENT -->
+    <script src="../js/moment.min.js"></script>
+    <script src="../js/moment_pt-br.js"></script>
+
+
+    <style type="text/css">
+        #mainNav .nav-link.active{
+            background: #F8F8F8;
+            padding: 10px 20px;
+            border-left: 3px solid #0072BC;
+            margin: 0 -15px;
+        }
+        .nav-tab{
+            display: none;
+        }
+        .nav-tab.active{
+            display: block;
+        }
+        #alternarClasses .nav-tabs li a {
+            padding: 12px;
+            margin: 0 15px;
+            color: #000;
+            border: 1px solid #dee2e6;
+            border-bottom: 0;
+            cursor: pointer;
+        }
+
+        #toastSuccess {
+          z-index: 999999;
+          pointer-events: none; }
+
+        #toastSuccess * {
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+        #toastSuccess > div {
+          position: relative;
+          pointer-events: auto;
+          overflow: hidden;
+          margin: 0 0 6px;
+          padding: 15px 15px 15px 50px;
+          width: 300px;
+          -moz-border-radius: 3px;
+          -webkit-border-radius: 3px;
+          border-radius: 3px;
+          background-position: 15px center;
+          background-repeat: no-repeat;
+          -moz-box-shadow: 0 0 12px #999;
+          -webkit-box-shadow: 0 0 12px #999;
+          box-shadow: 0 0 12px #999;
+          color: #FFF;
+          opacity: .8;
+          -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+          filter: alpha(opacity=80); }
+
+        #toastSuccess > div.rtl {
+          direction: rtl;
+          padding: 15px 50px 15px 15px;
+          background-position: right 15px center; }
+
+        #toastSuccess > div:hover {
+          -moz-box-shadow: 0 0 12px #000;
+          -webkit-box-shadow: 0 0 12px #000;
+          box-shadow: 0 0 12px #000;
+          opacity: 1;
+          -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+          filter: alpha(opacity=100);
+          cursor: pointer; }
+
+        #toastSuccess > .toast-info {
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=) !important; }
+
+        #toastSuccess > .toast-error {
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=) !important; }
+
+        #toastSuccess > .toast-success {
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==) !important; }
+
+        #toastSuccess > .toast-warning {
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGYSURBVEhL5ZSvTsNQFMbXZGICMYGYmJhAQIJAICYQPAACiSDB8AiICQQJT4CqQEwgJvYASAQCiZiYmJhAIBATCARJy+9rTsldd8sKu1M0+dLb057v6/lbq/2rK0mS/TRNj9cWNAKPYIJII7gIxCcQ51cvqID+GIEX8ASG4B1bK5gIZFeQfoJdEXOfgX4QAQg7kH2A65yQ87lyxb27sggkAzAuFhbbg1K2kgCkB1bVwyIR9m2L7PRPIhDUIXgGtyKw575yz3lTNs6X4JXnjV+LKM/m3MydnTbtOKIjtz6VhCBq4vSm3ncdrD2lk0VgUXSVKjVDJXJzijW1RQdsU7F77He8u68koNZTz8Oz5yGa6J3H3lZ0xYgXBK2QymlWWA+RWnYhskLBv2vmE+hBMCtbA7KX5drWyRT/2JsqZ2IvfB9Y4bWDNMFbJRFmC9E74SoS0CqulwjkC0+5bpcV1CZ8NMej4pjy0U+doDQsGyo1hzVJttIjhQ7GnBtRFN1UarUlH8F3xict+HY07rEzoUGPlWcjRFRr4/gChZgc3ZL2d8oAAAAASUVORK5CYII=) !important; }
+
+        #toastSuccess.toast-bottom-center > div, #toastSuccess.toast-top-center > div {
+          width: 300px;
+          margin-left: auto;
+          margin-right: auto; }
+
+        #toastSuccess.toast-bottom-full-width > div, #toastSuccess.toast-top-full-width > div {
+          width: 96%;
+          margin-left: auto;
+          margin-right: auto; }
+
+
+        @media (min-width: 992px) {
+            aside .task-list table{
+                max-width: none;
+            } 
+        }
+
+
+        @media all and (max-width: 240px) {
+          #toastSuccess > div {
+            padding: 8px 8px 8px 50px;
+            width: 11em; }
+
+          #toastSuccess > div.rtl {
+            padding: 8px 50px 8px 8px; }
+
+          #toastSuccess .toast-close-button {
+            right: -.2em;
+            top: -.2em; }
+
+          #toastSuccess .rtl .toast-close-button {
+            left: -.2em;
+            right: .2em; } }
+
+        @media all and (min-width: 241px) and (max-width: 480px) {
+          #toastSuccess > div {
+            padding: 8px 8px 8px 50px;
+            width: 18em; }
+
+          #toastSuccess > div.rtl {
+            padding: 8px 50px 8px 8px; }
+
+          #toastSuccess .toast-close-button {
+            right: -.2em;
+            top: -.2em; }
+
+          #toastSuccess .rtl .toast-close-button {
+            left: -.2em;
+            right: .2em; } }
+
+        @media all and (min-width: 481px) and (max-width: 768px) {
+          #toastSuccess > div {
+            padding: 15px 15px 15px 50px;
+            width: 25em; }
+
+          #toastSuccess > div.rtl {
+            padding: 15px 50px 15px 15px; } }
+    </style>
+
+</head>
+
+<body>
+    <!-- <noscript>Os scripts necessários para o funcionamento do sistema não foram carregados</noscript> -->
+
+    <a href="#main" title="Link para o corpo da página" class="sr-only">Pular para o conteúdo principal</a>
+    
+    <!-- MODAL -->
+    <div id="loadModal"></div>
+
+    <!-- TASK MODAL -->
+    <div class="modal fade" id="modal_task" tabindex="-1" role="dialog" aria-labelledby="modal_task-title" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title" id="modal_task-title">Adicionar</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="#">
+                    <input type="hidden" id="modal_task-id" name="modal_task-id">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="modal_task-titleTask">Título:</label>
+                            <input type="text" class="form-control" name="modal_task-titleTask" id="modal_task-titleTask">
+                        </div>
+                        <div class="dateRange row">
+                            <div class="col-lg-auto d-sm-flex">
+                                <div class="form-group">
+                                    <label for="modal_task-dataInicial">Data Inicial</label>
+                                    <div class="input-group initialDate" id="modal_task-dataInicial_content" data-target-input="nearest">
+                                        <input name="modal_task-dataInicial" id="modal_task-dataInicial" type="text" class="mask-dateTime form-control datetimepicker-input" placeholder="__/__/____ __:__" data-toggle="datetimepicker" data-target="#modal_task-dataInicial_content">
+                                        <div class="input-group-append" data-toggle="datetimepicker" data-target="#modal_task-dataInicial_content">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-auto d-sm-flex">
+                                <div class="form-group">
+                                    <label for="modal_task-dataFinal">Data Final</label>
+                                    <div id="modal_task-dataFinal_content" class="input-group finalDate" data-target-input="nearest">
+                                        <input name="modal_task-dataFinal" id="modal_task-dataFinal" type="text" class="mask-dateTime form-control datetimepicker-input" placeholder="__/__/____ __:__" data-toggle="datetimepicker" data-target="#modal_task-dataFinal_content" >
+                                        <div class="input-group-append" data-toggle="datetimepicker" data-target="#modal_task-dataFinal_content">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="modal_task-desc">Descrição:</label>
+                            <textarea class="form-control" name="modal_task-desc" id="modal_task-desc"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Cancelar</button>
+<<<<<<< HEAD
+                        <button type="button" class="btn btn-green saveTask">Salvar</button>
+=======
+                        <button type="submit" class="btn btn-blue saveTask">Salvar</button>
+>>>>>>> ddf345e2f9a4f350142483b14fa2607a62dc9318
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CONFIRMAÇÃO -->
+    <div class="modal fade" id="modal_confirm" tabindex="-1" role="dialog" aria-labelledby="modal_task-title" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title" id="modal_confirm-title">Excluir</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Tem certeza que deseja excluir essa tarefa?</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-blue confirm-action" data-action="delete" data-ref="ID_da_tarefa_01">Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- HEADER -->
+    <header>
+        <div id="header-container" class="container-fluid">
+
+            <div class="row">
+                <!-- ICONE - FOTO USUÁRIO -->
+                <div class="col-auto mx-auto"><img src="../img/logoRodape.png"></div>
+            </div>
+        </div>
+    </header>
+    
+
+    <!-- NAV MENU -->
+    <nav id="mainNav">
+        <!-- <h2 id="logo">
+            <img src="../img/logo-squadra.jpg" alt="Squadra">
+        </h2> -->
+        <ul class="nav flex-column p-3" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link font-weight-bold bg-transparent border-0" data-toggle="collapse-next" href="#">
+                    <span>Geral</span>
+                    <i class="fas fa-chevron-up ml-auto float-right"></i>
+                </a>
+                <ul class="navbar-nav" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="collapse-target" data-parent="#mainTab" href="#objetivo" role="tab" aria-controls="objetivo" aria-selected="true" id="home-objetivo">Objetivo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#insumos" role="tab" aria-controls="insumos" aria-selected="false" id="home-insumos">Insumos Básicos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#compatibilidade" role="tab" aria-controls="compatibilidade" aria-selected="false" id="home-compatibilidade">Compatibilidade</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link font-weight-bold bg-transparent border-0" data-toggle="collapse-next" href="#">
+                    <span>HTML</span>
+                    <i class="fas fa-chevron-down ml-auto float-right"></i>
+                </a>
+                <ul class="none navbar-nav" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#prototipo" role="tab" aria-controls="prototipo" aria-selected="false" id="home-prototipo">Protótipo HTML</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#master" role="tab" aria-controls="master" aria-selected="false" id="home-master">Master</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#calendarioTarefas" role="tab" aria-controls="calendarioTarefas" aria-selected="false" id="home-calendarioTarefas">Calendário de Tarefas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#alternarClasses" role="tab" aria-controls="alternarClasses" aria-selected="false" id="home-alternarClasses">Alternar Classes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#alternarVisibilidade" role="tab" aria-controls="alternarVisibilidade" aria-selected="false" id="home-alternarVisibilidade">Alternar Visibilidade</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#modal" role="tab" aria-controls="modal" aria-selected="false" id="home-modal">Modal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#calendario" role="tab" aria-controls="calendario" aria-selected="false" id="home-calendario">Calendário</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#select" role="tab" aria-controls="select" aria-selected="false" id="home-select">Select</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#grafico" role="tab" aria-controls="grafico" aria-selected="false" id="home-grafico">Gráfico</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#paginacao" role="tab" aria-controls="paginacao" aria-selected="false" id="home-paginacao">Paginação</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#msgAviso" role="tab" aria-controls="msgAviso" aria-selected="false" id="home-msgAviso">Mensagem de Aviso</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#validacao" role="tab" aria-controls="validacao" aria-selected="false" id="home-validacao">Validação de Formulários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#mascara" role="tab" aria-controls="mascara" aria-selected="false" id="home-mascara">Máscara</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#duplicar" role="tab" aria-controls="duplicar" aria-selected="false" id="home-duplicar">Duplicar Conteúdo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#adicionar" role="tab" aria-controls="adicionar" aria-selected="false" id="home-adicionar">Adicionar Conteúdo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse-target" data-parent="#mainTab" href="#abas" role="tab" aria-controls="abas" aria-selected="false" id="home-abas">Abas</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link font-weight-bold" data-toggle="collapse-target" data-parent="#mainTab" href="#versao" role="tab" aria-controls="versao" aria-selected="false" id="home-versao">
+                    <span>Versão Utilizável</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- MAIN -->
+    <main id="main" >
+        <div class="main-container">
+            <!-- GERAL -->
+            <div id="mainTab" class="tab-content">
+
+                <!-- OBJETIVO -->
+                <div class="card card-box tab-pane active" id="objetivo" role="tabpanel" aria-labelledby="home-objetivo">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Objetivo</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>O objetivo deste documento é descrever como foi feita a implementação dos requisitos no protótipo HTML do template de sistemas da ANTT. O protótipo foi desenvolvido de forma desacoplada de qualquer linguagem back-end para que se possa utilizá-la como base de forma independente de qualquer linguagem de desenvolvimento.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INSUMOS BÁSICOS -->
+                <div class="card card-box tab-pane" id="insumos" role="tabpanel" aria-labelledby="home-insumos">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Insumos Básicos</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Para construção do protótipo foi utilizado HTML, CSS e JS. Para a renderização do CSS foi utilizado o pré-processador Sass e para HTML e JS foram utilizados os seguintes insumos:</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center">
+                            <table class="table table-striped table-responsive-md">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Descrição</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Bootstrap v4.1.3</td>
+                                        <td>Framework front-end</td>
+                                        <td class="text-left">Utilizado como base estrutural para o projeto. Disponível em: <a href="https://getbootstrap.com/" title="bootstrap">https://getbootstrap.com/</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>JQuery v3.3.1</td>
+                                        <td>Biblioteca Javascript</td>
+                                        <td class="text-left">Utilizada como auxiliar para ações em JS. Disponível em: <a href="https://jquery.com/" title="Jquery">https://jquery.com/</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Popper</td>
+                                        <td>Auxiliar de plug-ins</td>
+                                        <td class="text-left">Utilizado como auxiliar para plug-ins do framework Bootstrap. Disponível em: <a href="https://popper.js.org/" title="Pooper">https://popper.js.org/</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMPATIBILIDADE -->
+                <div class="card card-box tab-pane" id="compatibilidade" role="tabpanel" aria-labelledby="home-compatibilidade">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Compatibilidade</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>A compatibilidade do protótipo desenvolvido é herdada do framework e demostrada nas tabelas abaixo:</p>
+                        </div>
+                        <ul class="pl-0 list-unstyled">
+                            <li class="text-body">
+                                <p>•    Suporte para navegadores desktop</p>
+                                <div class="d-sm-flex align-items-center">
+                                    <table class="table table-striped table-responsive-md">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"> </th>
+                                                <th scope="col">Chrome</th>
+                                                <th scope="col">Firefox</th>
+                                                <th scope="col">Internet Explorer</th>
+                                                <th scope="col">Microsoft Edge</th>
+                                                <th scope="col">Opera</th>
+                                                <th scope="col">Safari</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="font-weight-bold">Mac</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-secondary">Não se Aplica</td>
+                                                <td class="text-secondary">Não se Aplica</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-success">Suporta</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Windows</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-success">Suporta, IE10+</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-danger">Não Suporta</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                            <li class="text-body mt-5">
+                                <p>•    Suporte para navegadores mobile</p>
+                                <div class="d-sm-flex align-items-center">
+                                    <table class="table table-striped table-responsive-md">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"> </th>
+                                                <th scope="col">Chrome</th>
+                                                <th scope="col">Firefox</th>
+                                                <th scope="col">Safari</th>
+                                                <th scope="col">Android Browser & WebView</th>
+                                                <th scope="col">Microsoft Edge</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="font-weight-bold">Android</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-secondary">Não se Aplica</td>
+                                                <td class="text-success">Android v5.0 + Suporta</td>
+                                                <td class="text-success">Suporta</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">iOS</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-success">Suporta</td>
+                                                <td class="text-secondary">Não se Aplica</td>
+                                                <td class="text-success">Suporta</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Windows 10 Mobile</td>
+                                                <td class="text-secondary">Não se Aplica</td>
+                                                <td class="text-secondary">Não se Aplica</td>
+                                                <td class="text-secondary">Não se Aplica</td>
+                                                <td class="text-secondary">Não se Aplica</td>
+                                                <td class="text-success">Suporta</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PROTÓTIPO HTML -->
+                <div class="tab-pane" id="prototipo" role="tabpanel" aria-labelledby="home-prototipo">
+                    <div class="card card-box">
+                        <div class="card-body">
+                            <div class="d-sm-flex align-items-center">
+                                <h2>Protótipo HTML</h2>
+                            </div>
+                            <div class="d-sm-flex align-items-center mt-4">
+                                <p>Visto que o protótipo pode servir como base para várias equipes de desenvolvimento, foram criadas algumas interações em JavaScript para que ele fique o mais funcional possível, porém, essas interações podem (e devem) ser alteradas de acordo com cada implementação.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card card-box mt-5">
+                        <div class="card-body">
+                            <div class="d-sm-flex align-items-center">
+                                  <h2>Componentes</h2>
+                            </div>
+
+                            <div class="d-sm-flex align-items-center mt-4">
+                                <p>Alguns componentes utilizam plug-ins externos que precisam ser importados, segue a lista dos plug-ins e sua função no sistema:</p>
+                            </div>
+
+                            <div class="d-sm-flex align-items-center">
+                                <table class="table table-striped table-responsive-md">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col">Função</th>
+                                            <th scope="col">Documentação</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Tempusdominus v5.1.2</td>
+                                            <td>Calendário</td>
+                                            <td><a href="https://tempusdominus.github.io/bootstrap-4/" title="tempusdominus">https://tempusdominus.github.io/bootstrap-4/</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Moment v2.22.2</td>
+                                            <td>Manipulador de datas</td>
+                                            <td><a href="http://momentjs.com/docs/" title="momentjs">http://momentjs.com/docs/</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chart js v2.7.3</td>
+                                            <td>Gráfico</td>
+                                            <td><a href="http://www.chartjs.org/docs/latest/" title="chartjs">http://www.chartjs.org/docs/latest/</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select2 4.0.6</td>
+                                            <td>Selectbox</td>
+                                            <td><a href="https://select2.org/getting-started/basic-usage" title="select2">https://select2.org/getting-started/basic-usage</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Validation v1.17.0</td>
+                                            <td>Validação de formulário</td>
+                                            <td><a href="https://jqueryvalidation.org/documentation/" title="jqueryvalidation">https://jqueryvalidation.org/documentation/</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Toastr v2.1.4</td>
+                                            <td>Mensagens de aviso</td>
+                                            <td><a href="https://codeseven.github.io/toastr/demo.html" title="toastr">https://codeseven.github.io/toastr/demo.html</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mask v1.14.15</td>
+                                            <td>Máscara</td>
+                                            <td><a href="https://github.com/igorescobar/jQuery-Mask-Plugin" title="jQuery-Mask-Plugin">https://github.com/igorescobar/jQuery-Mask-Plugin</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MASTER -->
+                <div class="card card-box tab-pane" id="master" role="tabpanel" aria-labelledby="home-master">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Master</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>A fim de reaproveitar blocos de códigos comuns a todas as páginas do sistema, foi criada um HTML chamado <span class="font-weight-bold">‘master.html’</span> que contem esses blocos de código. Como estratégia para incluir esses blocos nas demais páginas foi utilizado a função ‘load’ do Jquery no arquivo <span class="font-weight-bold">‘global.js’</span>, encontrada entre os blocos de comentário ‘[START INCLUDE CODE]’ e ‘[END INCLUDE CODE]’. Essa estratégia deve ser alterada de acordo com o paradigma mais adequado de cada linguagem de desenvolvimento. 
+                            Alguns outros trechos de código também foram replicados e adicionados na pasta ‘include’ do protótipo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CALENDÁRIO DE TAREFAS -->
+                <div class="card card-box tab-pane" id="calendarioTarefas" role="tabpanel" aria-labelledby="home-calendarioTarefas">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Calendário de Tarefas</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Alguns sistemas terão informações laterais sobre as tarefas relacionadas. Para importar o Calendário de Tarefas no sistema é necessário de além da marcação do HTML, importar o arquivo <span class="font-weight-bold">‘aside.js’</span>. Ao utilizar o Calendário de tarefas, também é necessário se atentar a implementação do plug-in de calendário.
+                            Ao se selecionar a data alguns componentes da tela devem se atualizar, para isso foi adicionado um log no console, presente no arquivo <span class="font-weight-bold">‘aside.js’</span> indicando o momento de se realizar a ação.
+                            </p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-3">
+                            <h2>Lista de Tarefas</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>A cada comando de manter a lista de tarefas deve-se realizar uma requisição AJAX para atualizar o estado do componente na base de dados usada. 
+                            As informações não visuais das tarefas estão em uma div com a classe <span class="font-weight-bold">‘item-info’</span> presente no HTML em cada linha de dados. O script utiliza das classes presentes em cada input para popular a modal de edição:
+                            </p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <ul class="pl-3">
+                                <li><span class="font-weight-bold">ref-data_inicial: </span><span>Informação da data inicial da tarefa</span></li>
+                                <li><span class="font-weight-bold">ref-data_final: </span>Informação da data final da tarefa</li>
+                                <li><span class="font-weight-bold">ref-desc: </span>Informação da descrição da tarefa</li>
+                                <li><span class="font-weight-bold">ref-id: </span>Informação do ID da tarefa (Se a tarefa está sendo criada, o ID da tarefa será vazio)</li>
+                                <li><span class="font-weight-bold">ref-title: </span>Informação do título da tarefa</li>
+                            </ul>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-3">
+                            <h2>Lista de Tarefas Internas</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Para importar a lista de tarefas nas páginas internas do sistema é necessário implementar o código do arquivo <span class="font-weight-bold">‘task_fixed’</span> na pasta <span class="font-weight-bold">‘include’</span>.
+                            </p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <!-- ASIDE -->
+                            <aside id="mainAside" class="col-lg-4 ml-auto">
+                                <div id="aside-container">
+
+                                    <div class="calendar-content mt-0">
+                                        <h3 class="mb-2">25 de junho</h3>
+
+                                        <div class="inline_datepicker" data-date="25/06/2018"></div>
+                                    </div>
+
+                                    <div class="task-list">
+                                        
+                                        <table class="table-default" title="lista de tarefas">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2">Lista de tarefas 25 de Junho</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="check_task-1" name="check_task-1">
+                                                            <label class="custom-control-label" for="check_task-1">Item1</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-inline-flex">
+                                                            <i class="fas fa-edit" data-toggle="modal" data-target="#modal_task"></i>
+                                                            <i class="fas fa-trash" data-toggle="modal" data-target="#modal_confirm" data-title="Excluir" data-desc="Tem certeza que deseja excluir essa tarefa?" data-action="delete" data-ref="ID_da_tarefa_01"></i>
+                                                            <div class="item-info">
+                                                                <input type="hidden" name="check_task-id-1" id="check_task-id-1" class="ref-id" value="ID_da_tarefa_01">
+                                                                <input type="hidden" name="check_task-data_inicial-1" id="check_task-data_inicial-1" class="ref-data_inicial" value="10/10/2010 00:00">
+                                                                <input type="hidden" name="check_task-data_final-1" id="check_task-data_final-1" class="ref-data_final" value="11/11/2011 00:00">
+                                                                <input type="hidden" name="check_task-desc-1" id="check_task-desc-1" class="ref-desc" value="Descrição da tarefa 01">
+                                                                <input type="hidden" name="check_task-title-1" id="check_task-title-1" class="ref-title" value="titulo da tarefa 01">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="check_task-2" name="check_task-2">
+                                                            <label class="custom-control-label" for="check_task-2">Item2</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-inline-flex">
+                                                            <i class="fas fa-edit" data-toggle="modal" data-target="#modal_task"></i>
+                                                            <i class="fas fa-trash" 
+                                                                data-toggle="modal" 
+                                                                data-target="#modal_confirm" 
+                                                                data-title="Excluir" 
+                                                                data-desc="Tem certeza que deseja excluir essa tarefa?" 
+                                                                data-action="delete" 
+                                                                data-ref="ID_da_tarefa_02"></i>
+                                                            <div class="item-info">
+                                                                <input type="hidden" name="check_task-id-2" id="check_task-id-2" class="ref-id" value="ID_da_tarefa_02">
+                                                                <input type="hidden" name="check_task-data_inicial-2" id="check_task-data_inicial-2" class="ref-data_inicial" value="12/12/2012 12:00">
+                                                                <input type="hidden" name="check_task-data_final-2" id="check_task-data_final-2" class="ref-data_final" value="13/01/2013 12:00">
+                                                                <input type="hidden" name="check_task-desc-2" id="check_task-desc-2" class="ref-desc" value="Descrição da tarefa 02">
+                                                                <input type="hidden" name="check_task-title-2" id="check_task-title-2" class="ref-title" value="titulo da tarefa 02">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <button type="button" class="btn btn-white" data-toggle="modal" data-target="#modal_task">
+                                            <i class="fas fa-plus rounded-ico"></i>
+                                            <span>Adicionar Tarefas</span>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMPONENTES -->
+                <div class="card card-box tab-pane" id="componentes" role="tabpanel" aria-labelledby="home-componentes">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Componentes</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Visto que o protótipo pode servir como base para várias equipes de desenvolvimento, foram criadas algumas interações em JavaScript para que ele fique o mais funcional possível, porém, essas interações podem (e devem) ser alteradas de acordo com cada implementação.
+                            Alguns componentes utilizam plug-ins externos que precisam ser importados, segue a lista dos plug-ins e sua função no sistema:
+                            </p>
+                        </div>
+                        <div class="d-sm-flex align-items-center">
+                            <table class="table table-striped table-responsive-md">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Função</th>
+                                        <th scope="col">Documentação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tempusdominus v5.1.2</td>
+                                        <td>Calendário</td>
+                                         <td><a href="#">https://tempusdominus.github.io/bootstrap-4/</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Moment v2.22.2</td>
+                                        <td>Manipulador de datas</td>
+                                        <td><a href="#">http://momentjs.com/docs/</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Chart js v2.7.3</td>
+                                        <td>Gráfico</td>
+                                        <td><a href="#">http://www.chartjs.org/docs/latest/ </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Select2 4.0.6</td>
+                                        <td>Selectbox</td>
+                                        <td><a href="#">https://select2.org/getting-started/basic-usage </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Validation v1.17.0</td>
+                                        <td>Validação de formulário</td>
+                                        <td><a href="#">https://jqueryvalidation.org/documentation/ </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Toastr v2.1.4</td>
+                                        <td>Mensagens de aviso</td>
+                                        <td><a href="#">https://codeseven.github.io/toastr/demo.html</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mask v1.14.15</td>
+                                        <td>Máscara</td>
+                                        <td><a href="#">https://github.com/igorescobar/jQuery-Mask-Plugin </a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALTERNAR CLASSES -->
+                <div id="alternarClasses" class="card card-box tab-pane" role="tabpanel" aria-labelledby="home-alternarClasses">
+                  <div class="card-body">
+                      <div class="d-sm-flex align-items-center">
+                          <h2>Alternar Classes</h2>
+                      </div>
+                      <div class="d-sm-flex align-items-center mt-4">
+                          <p>Script criado para trocar a classe ‘active’ de um determinado alvo. Na marcação do elemento trigger deve ter os seguintes atributos:</p>
+                      </div>
+                      <div class="d-sm-flex align-items-center mt-2">
+                          <ul class="pl-3">
+                              <li><span class="font-weight-bold">data-toggle="class": </span><span>Atributo informando que o elemento é um trigger do script de classe</span></li>
+                              <li><span class="font-weight-bold">data-target: </span>Atributo com informação sobre o elemento alvo. Se for um ID deve vir acompanhado de ‘#’ antes do valor.</li>
+                          </ul>
+                      </div>
+                      <div class="d-sm-flex align-items-center mt-4">
+                          <p>Para utilizar essa funcionalidade é necessário importar o arquivo <span class="font-weight-bold">‘apply_toggle.js’</span></p>
+                      </div>
+                      <div class="d-sm-flex align items-center mt-4">
+                          <ul class="nav nav-tabs w-100 justify-content-center">
+                              <li class="nav-item">
+                                  <a class="nav-link active" data-toggle="class" data-target="#conteudo1" aria-controls="tab1" aria-selected="false" id="tab1">Trigger</a>
+                              </li>
+                          </ul>
+                      </div>
+                      <!-- <ul class="nav">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#">Active</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link disabled" href="#">Disabled</a>
+                        </li>
+                      </ul> -->
+                      <div id="contentTab" class="text-center mt-3">
+                          <div id="conteudo1" class="nav-tab active" role="tabpanel" aria-labelledby="tab1">
+                              <a href="#">Conteúdo1</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
+                <!-- MODAL -->
+                <div class="card card-box tab-pane" id="modal" role="tabpanel" aria-labelledby="home-modal">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Modal</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>A modal do sistema apresenta marcação semelhante ao descrito pela documentação do framework (<a href="https://getbootstrap.com/docs/4.1/components/modal/" title="modal">https://getbootstrap.com/docs/4.1/components/modal/</a>), porém em alguns casos, além da marcação padrão, existem alguns atributos opcionais que foram adicionados no botão de trigger, descritos a seguir:</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <ul class="pl-3">
+                                <li><span class="font-weight-bold">data-title:</span><span> Atributo responsável por informar qual é o título da modal.</span></li>
+                                <li><span class="font-weight-bold">data-desc:</span> Atributo responsável por informar qual é o conteúdo do corpo da modal.</li>
+                            </ul>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Para utilizar essa funcionalidade é necessário importar o arquivo <span class="font-weight-bold">‘apply_modal.js’</span></p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-3">
+                            <h2>Modal de Confirmação</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Foi utilizada apenas uma estrutura de modal para as confirmações do sistema. Para diferenciar um contexto do outro é necessário passar no elemento trigger dois atributos:</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <ul class="pl-3">
+                                <li><span class="font-weight-bold">data-action:</span><span> Ação que será executada caso haja confirmação da modal.</span></li>
+                                <li><span class="font-weight-bold">data-ref:</span> Referência do elemento em que a ação irá ser executada. Caso não seja declarada, o valor padrão é <span class="font-weight-bold">‘sistema’</span>.</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <button class="btn btn-success" data-toggle="modal" data-target="#modal_confirm">
+                                <i class="fas fa-plus rounded-ico"></i>
+                                <span>Abrir Modal</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CALENDÁRIO -->
+                <div class="card card-box tab-pane" id="calendario" role="tabpanel" aria-labelledby="home-calendario">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Calendário</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Para incluir o calendário é necessário importar os arquivos <span class="font-weight-bold">‘tempusdominus-bootstrap-4.min.js’</span> e <span class="font-weight-bold">‘apply_date.js’</span>, além da folha de estilo para o componente: <span class="font-weight-bold">‘tempusdominus-bootstrap-4.min.css’</span>. Esse plug-in de calendário trabalha em conjunto com um script auxiliar de manipulação de datas, portanto também é necessário importar o arquivo <span class="font-weight-bold">‘moment.min.js’</span> e sua tradução para português <span class="font-weight-bold">‘moment_pt-br.js’</span> </p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-1">
+                            <p>Além da implementação padrão declarada pela documentação, foi implementado um script para criação de range entre duas datas (data inicial até data final). Para implementar essa funcionalidade é necessário criar uma estrutura HMTL conforme mostra a página <span class="font-weight-bold">‘master.html’</span> na sessão da modal de tarefas.  </p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <div class="form-group">
+                                    <label for="birth-date">Data de Nascimento:</label>
+                                    <div class="input-group dateOnly" id="birth-date_content" data-target-input="nearest">
+                                        <input name="birth-date" id="birth-date" type="text" class="form-control datetimepicker-input mask-date" placeholder="__/__/____" data-toggle="datetimepicker" data-target="#birth-date_content">
+                                        <div class="input-group-append" data-toggle="datetimepicker" data-target="#birth-date_content">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALTERNAR VISIBILIDADE -->
+                <div class="card card-box tab-pane" id="alternarVisibilidade" role="tabpanel" aria-labelledby="home-alternarVisibilidade">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Alternar Visibilidade</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Além do comportamento padrão disponibilizado pelo framework (<a href="https://getbootstrap.com/docs/4.1/components/collapse/" title="collapse">https://getbootstrap.com/docs/4.1/components/collapse/</a>), foi criado um script que alterna a visibilidade do elemento imediatamente posterior ao trigger. A marcação no trigger deve conter o atributo ‘ data-toggle="collapse-next" ’</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>Para utilizar essa funcionalidade é necessário importar o arquivo <span class="font-weight-bold">‘apply_toggle.js’</span></p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>Também é possível alterar a visibilidade de elementos, controlados por um selectbox. É necessário colocar no selectbox os seguintes atributos:</span></p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <ul class="pl-3">
+                                <li>
+                                    <span>Classe<span class="font-weight-bold"> 'changeContent'</span></span>
+                                </li>
+                                <li>
+                                    <span class="font-weight-bold">data-container:  </span>Referencia para o ID do container onde estarão os conteúdos
+                                </li>
+                                <li>
+                                    <span class="font-weight-bold">data-content (na tag option):  </span>Referência para o ID do conteúdo
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <ul class="list-unstyled">
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold bg-transparent border-0 pl-0" data-toggle="collapse-next" href="#">
+                                        <span>Alternar</span>
+                                        <i class="fas fa-chevron-down ml-5"></i>
+                                    </a>
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Item1</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Item2</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Item3</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SELECT -->
+                <div class="card card-box tab-pane" id="select" role="tabpanel" aria-labelledby="home-select">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Select</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Para estilização e controle do elemento ‘select’ foi utilizado o plugin ‘select2’. É necessário adicionar a classe <span class="font-weight-bold">‘select2’</span> no elemento.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>Para utilizar essa funcionalidade é necessário importar os arquivos <span class="font-weight-bold">‘select2.min.js’</span> <span class="font-weight-bold">‘apply_select.js’</span> e <span class="font-weight-bold">‘select2.min.css’</span></p>
+                        </div>
+                        <div class="col-sm-2 align-items-center mt-4 pl-0"> 
+                            <div class="form-group">
+                                <label for="select1">Select</label>
+                                <select class="select2" name="select1" id="select1">
+                                    <option value="">Selecione</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GRÁFIICO -->
+                <div class="card card-box tab-pane" id="grafico" role="tabpanel" aria-labelledby="home-grafico">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Gráfico</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Os dados do gráfico estão sendo carregados via JSON no formato exigido pela documentação do plugin (<a href="http://www.chartjs.org/docs/latest/getting-started/usage.html" title="chartjs">http://www.chartjs.org/docs/latest/getting-started/usage.html</a>). Na marcação do elemento trigger deve ser ter alguns atributos necessários pra montar o gráfico:</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <ul class="pl-3">
+                                <li><span class="font-weight-bold">data-type:</span><span> Tipo de gráfico que deve ser montado. Os valores possíveis são disponibilizados pelo plugin.</span></li>
+                                <li><span class="font-weight-bold">data-path:</span> URL para o arquivo com as informações do gráfico.</li>
+                            </ul>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>É importante ressaltar que alguns gráficos apresentam uma relação de equivalência entre os valores. Como por exemplo, o valor mostrado equivale a 30% do total. Nesses casos é necessário adicionar na marcação do elemento uma classe <span class="font-weight-bold">‘relative’</span> que indicará ao JS que o primeiro valor do JSON é relativo ao segundo valor do JSON. Foi adicionado os arquivos <span class="font-weight-bold">‘demand.json’</span> e <span class="font-weight-bold">‘demand-final.json’</span> na pasta ‘json’ do protótipo, para exemplificar a estrutura requerida.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>Para o tipo ‘doughnut’ é possível gerar um gráfico mais fino, para isso é necessário adicionar a classe ‘small-chart’ no elemento do gráfico e também um gráfico intermediário, com a classe ‘medium-chart’.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>Para utilizar essa funcionalidade é necessário importar os arquivos <span class="font-weight-bold">‘Chart.min.js’</span> e <span class="font-weight-bold">‘apply_chart.js’</span>.</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 mx-auto">
+                                <canvas class="apply_chart small-chart relative" data-type="doughnut" data-path="docs.json"></canvas>
+                                <span class="percent-chart">0%</span>
+                            </div>
+                            <div class="col-xl-4 mx-auto">
+                                <canvas class="apply_chart medium-chart relative" data-type="doughnut" data-path="docs.json"></canvas>
+                                <span class="percent-chart">0%</span>
+                            </div>
+                            <div class="col-xl-4 mx-auto">
+                                <canvas class="apply_chart relative" data-type="doughnut" data-path="docs.json"></canvas>
+                                <span class="percent-chart">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGINAÇÃO -->
+                <div class="card card-box tab-pane" id="paginacao" role="tabpanel" aria-labelledby="home-paginacao">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Paginação</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>A marcação da paginação é dada por uma classe <span class="font-weight-bold">‘pagination-content’</span> que através da importação do arquivo <span class="font-weight-bold">‘apply_pagination.js’</span> importa a estrutura <span class="font-weight-bold">‘pagination.html’</span> presente na pasta include do protótipo. A cada click da paginação é gerado um log no console informando ao desenvolvedor a necessidade de implementação do código AJAX para atualizar a lista. Também é atualizado o input hidden <span class="font-weight-bold">‘searchPage’</span> presente no formulário contendo a informação de qual página foi solicitada.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <!-- PAGINATION -->
+                            <div class="pagination-content mx-auto">
+                                <ul class="pagination">
+                                    <li><button class="btn btn-white d-sm-none" value="1"><span class="sr-only">Primeiro</span> <span> <i class="fas fa-angle-double-left"></i> </span></button> </li>
+                                    <li><button class="btn btn-white" value="49"> <span class="sr-only">Anterior</span> <span> <i class="fas fa-angle-left"></i> </span></button> </li>
+                                    <li><button class="btn btn-white d-none d-sm-block" value="1"><span class="sr-only">Primeiro</span> <span>1</span></button> </li>
+                                    <li><span class="mx-2">...</span></li>
+                                    <li><button class="btn btn-white d-none d-sm-block" value="49">49</button> </li>
+                                    <li class="active"> <button disabled class="btn btn-blue">50</button> </li>
+                                    <li><button class="btn btn-white d-none d-sm-block" value="51">51</button> </li>
+                                    <li><span class="mx-2">...</span></li>
+                                    <li><button class="btn btn-white d-none d-sm-block" value="100"><span class="sr-only">Último</span> <span>100</span> </button></li>
+                                    <li><button class="btn btn-white" value="51"> <span class="sr-only">Próximo</span> <span> <i class="fas fa-angle-right"></i> </span> </button> </li>
+                                    <li><button class="btn btn-white d-sm-none" value="100"><span class="sr-only">Último</span> <span> <i class="fas fa-angle-double-right"></i> </span></button></li>
+                                </ul>
+                            </div>
+                            <input type="hidden" value="1" id="searchPage" name="searchPage" class="searchPage">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MENSAGEM DE AVISO -->
+                <div class="card card-box tab-pane" id="msgAviso" role="tabpanel" aria-labelledby="home-msgAviso">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Mensagens de Aviso</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>As mensagens de aviso são disparadas via javascript seguindo o indicado pela documentação do plugin, não tendo uma marcação HTML para tal.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p> Para utilizar essa funcionalidade é necessário importar os arquivos <span class="font-weight-bold">‘toastr.min.js’</span> e <span class="font-weight-bold">‘apply_toastr.js’</span>.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <div id="toastSuccess" class="toast-top-center position-relative">
+                                <div class="toast toast-success" aria-live="polite">
+                                    <button class="toast-close-button" type="button" role="button">x</button>
+                                    <div class="toast-message">Ação Realizada com Sucesso!</div>
+                                </div>
+                            </div>
+                            <!-- <div id="toast-container" class="toast-top-center position-relative">
+                                <div class="toast toast-success" aria-live="polite">
+                                    <button class="toast-close-button" type="button" role="button">x</button>
+                                    <div class="toast-message">Ação Realizada com Sucesso!</div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                    
+                <!-- VALIDAÇÃO DE FORMULÁRIOS -->
+                <div class="card card-box tab-pane" id="validacao" role="tabpanel" aria-labelledby="home-validacao">
+                    <div class="card-body">
+                          <div class="d-sm-flex align-items-center">
+                              <h2>Validação de Formulários</h2>
+                          </div>
+                          <div class="d-sm-flex align-items-center mt-4">
+                              <p>Para validar formulários é necessário adicionar a classe <span class="font-weight-bold">‘validateForm’</span> no elemento form. Foi adicionado logs no console nos pontos onde deve-se ter uma intervenção do desenvolvedor no arquivo <span class="font-weight-bold">‘apply_pagination.js’</span>.</p>
+                          </div>
+                          <div class="d-sm-flex align-items-center mt-2">
+                              <p> Prevendo o possível uso do plugin para formulários que necessitam de um fluxo assíncrono, o script faz o uso da classe <span class="font-weight-bold">‘submit_form’</span> no elemento do formulário para o caso de seguir o fluxo padrão de submit. Caso a classe for omitida, o script segue o fluxo para a implementação assíncrona (logs no console foram criados para mostrar para o desenvolvedor onde implementar o código).</p>
+                          </div>
+                          <div class="d-sm-flex align-items-center mt-2">
+                              <p>Para utilizar essa funcionalidade é necessário importar os arquivos <span class="font-weight-bold">‘jquery.validate.min.js’</span> e <span class="font-weight-bold">‘apply_pagination.js’</span>. Essa funcionalidade tem uma dependência com os arquivos explicitados no item <span class="font-weight-bold">Mensagens de Aviso</span> para que (se for o caso) possa mostrar as mensagens de feedback</p>
+                          </div>
+                          <form action="#" class="validateForm">
+                              <div class="form-group">
+                                  <label for="input1">Texto 1</label>
+                                  <input type="text" id="input1" name="input1" class="form-control" required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="input2">Texto 2</label>
+                                  <input type="text" id="input2" name="input2" class="form-control" required>
+                              </div>
+                              <div class="form-group text-right">
+                                  <button type="submit" class="btn btn-blue">Cadastrar Assunto</button>
+                              </div>
+                          </form>
+                    </div>
+                </div>
+
+                <!-- MÁSCARA -->
+                <div class="card card-box tab-pane" id="mascara" role="tabpanel" aria-labelledby="home-mascara">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Máscara</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>No protótipo desenvolvido foi implementado as seguintes máscaras, com suas respectivas classes de controle:</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <ul class="pl-3">
+                                <li>
+                                    <span class="font-weight-bold">mask-tel:</span>
+                                    <span> Máscara de telefone (9º dígito opcional).</span>
+                                </li>
+                                <li>
+                                    <span class="font-weight-bold">mask-number:</span> 
+                                    <span>Apenas números válidos.</span>
+                                </li>
+                                <li>
+                                    <span class="font-weight-bold">mask-date:</span>
+                                    <span> Máscara de data</span>
+                                </li>
+                                <li>
+                                    <span class="font-weight-bold">mask-dateTime:</span> 
+                                    <span>Máscara de data e hora.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>Para utilizar essa funcionalidade é necessário importar os arquvios <span class="font-weight-bold">‘jquery.mask.min.js’</span> e <span class="font-weight-bold">‘apply_mask.js’</span></p>
+                        </div>
+                        <div class="d-sm-flex align-items-center">
+                            <div class="form-group col-sm-3">
+                                <label for="celphone_number">Máscara de telefone</label>
+                                <input required name="celphone_number" id="celphone_number" data-id="celphone_number" data-ignoreName type="text" class="form-control mask-tel" placeholder="(__) ____-_____">
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label for="number">Máscara de número</label>
+                                <input required name="number" id="number" data-id="number" data-ignoreName type="text" class="form-control mask-number">
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label for="date">Máscara de data</label>
+                                <input required name="date" id="date" data-id="date" data-ignoreName type="text" class="form-control mask-date" placeholder="__/__/____">
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label for="dateTime">Máscara de data e hora</label>
+                                <input required name="dateTime" id="dateTime" data-id="dateTime" data-ignoreName type="text" class="form-control mask-dateTime" placeholder="__/__/____ __:__">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DUPLICAR CONTEÚDO -->
+                <div class="card card-box tab-pane" id="duplicar" role="tabpanel" aria-labelledby="home-duplicar">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Duplicar Conteúdo</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Para duplicar o conteúdo é necessário que a estrutura ‘pai’ tenha a classe ‘duplicate-content’ e a existência dos ícones de controle para adicionar ou remover o conteúdo, assim como demonstrado na página ‘parlamentar_cadastrar.html’.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>Os ‘ids’ e ‘names’ dos inputs serão gerados dinamicamente caso eles tenham a atributo ‘data-id’ neles. Caso o ‘name’ do input não deva ser alterado, é necessário adicionar o atributo ‘data-ignoreName’ no elemento.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>Para utilizar essa funcionalidade é necessário importar o arquivo <span class="font-weight-bold">‘duplicate_content.js’</span>.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <div class="duplicate-content">
+                                <div class="form-group row">
+                                    <div class="col-sm">
+                                        <label for="celphone_type">Tipo de Telefone:</label>
+                                        <select class="select2" name="celphone_type" id="celphone_type" data-id="celphone_type">
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="40">40</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm mt-3 mt-sm-0">
+                                        <label for="celphone_number">Telefone:*</label>
+                                        <input required name="celphone_number" id="celphone_number" data-id="celphone_number" data-ignoreName type="text" class="form-control mask-tel" placeholder="(__) ____-_____">
+                                    </div>
+                                    <div class="col-auto mt-3 mt-sm-0 plus-content pr-0">
+                                        <i class="fas fa-plus-circle action-ico"></i>
+                                    </div>
+                                    <div class="col-auto mt-3 mt-sm-0 minus-content">
+                                        <i class="fas fa-minus-circle action-ico"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADICIONAR CONTEÚDO -->
+                <div class="card card-box tab-pane" id="adicionar" role="tabpanel" aria-labelledby="home-adicionar">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Adicionar Conteúdo</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Para adicionar conteúdos dinamicamente de acordo com o preenchimento de alguns campos do formulário, é necessário a adição da classe ‘add_content’ no elemento trigger e os seguintes atributos:</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <ul class="pl-3">
+                                <li><span class="font-weight-bold">data-form:</span><span> Marcação do ID da sessão do formulário que contém os campos relevantes para gerar os blocos visuais.</span></li>
+                                <li><span class="font-weight-bold">data-target:</span> Marcação do container que irá armazenar os blocos gerados.</li>
+                                <li><span class="font-weight-bold">data-content:</span> Marcação dos ID’s (separados por vírgula) dos inputs que irão formar o bloco.</li>
+                            </ul>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>No container que irá armazenar os blocos gerados é necessário adicionar também a classe ‘add_content-container’. É possível observar que além da parte visual dos blocos gerados, existem também alguns inputs hidden que armazenam os valores dos campos da sessão do formulário. Eles mantém o valor do input no momento de inclusão do bloco e seu name é formado pelo name original do input procedido do texto ‘_saved’.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>Para utilizar essa funcionalidade é necessário importar os arquivos <span class="font-weight-bold">‘add_content.js’</span>. Essa funcionalidade tem uma dependência com os arquivos explicitados no item <span class="font-weight-bold">Mensagens de Aviso</span> para que o sistema possa mostrar as mensagens de feedback.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <div class="card card-box h-100 w-25 mx-auto">
+                                <div class="card-body w-xxl-100">
+                                    <div id="contentForm">
+                                        <div class="form-group">
+                                            <label for="name_member">Nome:*</label>
+                                            <input name="name_member" id="name_member" type="text" class="form-control">
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm">
+                                                <label for="responsibility_member">Cargo:*</label>
+                                                <input name="responsibility_member" id="responsibility_member" type="text" class="form-control">
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <label for="role_member">Partido:*</label>
+                                                <select class="select2 form-control" name="role_member" id="role_member">
+                                                    <option value="">Selecione</option>
+                                                    <option value="20">20</option>
+                                                    <option value="40">40</option>
+                                                    <option value="100">100</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-white w-100 add_content" data-form="#contentForm" data-target="#member-container" data-content="#name_member,#responsibility_member" >Adicionar Conteúdo</button>
+                                    </div>
+
+                                    <div id="member-container" class="row add_content-container"></div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ABAS -->
+                <div class="card card-box tab-pane" id="abas" role="tabpanel" aria-labelledby="home-abas">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Abas</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Além da marcação padrão provida pelo framework (<a href="https://getbootstrap.com/docs/4.1/components/navs/#javascript-behavior" title="javascript-behavior">https://getbootstrap.com/docs/4.1/components/navs/#javascript-behavior</a>), o protótipo desenvolvido disponibiliza uma visualização de abas compatível com dispositivos móveis. Para utilizar essa funcionalidade é necessário um container com uma classe ‘responsive-tab’. </p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>Para utilizar essa funcionalidade é necessário importar o arquivo ‘apply_tab.js’.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Botões Anterior / Próximo</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>Para adicionar a funcionalidade de avançar e voltar abas através de botões de controle, é necessário adicionar um container com a classe ‘btn-tabContent’, e dois elementos descendentes  com a classe ‘next-tab’ para avançar e a classe ‘prev-tab’ para voltar.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <p>Considerando que para avançar, exista uma interação com o servidor, existe um log no console indicando para o desenvolvedor o momento de realizar a requisição AJAX.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-2">
+                            <div class="responsive-tab">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="infoGerais-tab" href="#infoGerais" role="tab">1 - Informações Gerais</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="assunto-tab" href="#assunto" role="tab">2 - Assunto</a>
+                                    </li>
+                                </ul>
+                                <form action="#">
+                                    <div class="tab-content">
+                                        <!-- INFORMAÇÕES GERAIS -->
+                                        <div class="tab-pane active" id="infoGerais">
+                                          <div class="row">
+                                              <div class="form-group col-sm-auto">
+                                                  <label for="dataInicial">Data e hora da audiência</label>
+                                                  <div class="input-group initialDate" id="dataInicial_content" data-target-input="nearest">
+                                                      <input name="dataInicial" id="dataInicial" type="text" class="mask-dateTime form-control datetimepicker-input" placeholder="__/__/____ __:__" data-toggle="datetimepicker" data-target="#dataInicial_content">
+                                                      <div class="input-group-append" data-toggle="datetimepicker" data-target="#dataInicial_content">
+                                                          <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="w-100"></div>
+
+                                              <div class="form-group col-xl-5 col-lg-6">
+                                                  <label for="local">Local da audiência</label>
+                                                  <input required name="local" id="local" type="text" class="form-control">
+                                              </div>
+                                              <div class="w-100"></div>
+
+                                              <div class="form-group col-xl-5">
+                                                  <label for="parlamentar_nome">Nome do Parlamentar:</label>
+                                                  <input required name="parlamentar_nome" id="parlamentar_nome" type="text" class="form-control">
+                                              </div>
+                                              <div class="form-group col-xl col-lg-4 col-md-6">
+                                                  <label for="parlamentar_cargo">Cargo:</label>
+                                                  <select required name="parlamentar_cargo" id="parlamentar_cargo" class="select2">
+                                                      <option value="">Selecione</option>
+                                                      <option value="20">20</option>
+                                                      <option value="40">40</option>
+                                                      <option value="100">100</option>
+                                                  </select>
+                                              </div>
+                                              <div class="form-group col-xl col-lg-4 col-md-6">
+                                                  <label for="parlamentar_partido">Partido:</label>
+                                                  <select name="parlamentar_partido" id="parlamentar_partido" class="select2">
+                                                      <option value="Janeiro">Janeiro</option>
+                                                      <option value="20">20</option>
+                                                      <option value="40">40</option>
+                                                      <option value="100">100</option>
+                                                  </select>
+                                              </div>
+                                              <div class="form-group col-xl col-lg-4 col-md-6">
+                                                  <label for="parlamentar_state">UF:</label>
+                                                  <select name="parlamentar_state" id="parlamentar_state" class="select2">
+                                                      <option value="10">10</option>
+                                                      <option value="20">20</option>
+                                                      <option value="40">40</option>
+                                                      <option value="100">100</option>
+                                                  </select>
+                                              </div>
+                                          </div>
+                                          
+                                          <div class="text-right btn-tabContent mt-3">
+                                              <a href="#" class="btn btn-white">Voltar</a>
+                                              <button type="button" class="btn btn-blue next-tab">Próximo</button>
+                                          </div>
+                                        </div>
+
+                                        <!-- ASSUNTO -->
+                                        <div class="tab-pane" id="assunto">
+                                            <div class="row">
+                                                <div class="form-group col-xl-5">
+                                                    <label for="assunto_type">Tipo de Assunto:</label>
+                                                    <select name="assunto_type" id="assunto_type" class="select2">
+                                                        <option value="Janeiro">Janeiro</option>
+                                                        <option value="20">20</option>
+                                                        <option value="40">40</option>
+                                                        <option value="100">100</option>
+                                                    </select>
+                                                </div>
+                                                
+                                                <div class="form-group col-xl-10">
+                                                    <label for="assunto_text">Assunto:</label>
+                                                    <textarea name="assunto_text" id="assunto_text" class="form-control"></textarea>
+                                                </div>
+
+                                                <div class="form-group col-xl-10">
+                                                    <label for="link_url">Link relativo a demanda (Vídeo, Imagem, Site etc):</label>
+                                                    <input required name="link_url" id="link_url" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="text-right btn-tabContent mt-3">
+                                                <button type="button" class="btn btn-white prev-tab">Voltar</button>
+                                                <button type="button" class="btn btn-blue next-tab">Próximo</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VERSÃO UTILIZÁVEL -->
+                <div class="card card-box tab-pane" id="versao" role="tabpanel" aria-labelledby="home-versao">
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Versão Utilizável</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>A versão utilizável do protótipo desenvolvido está disponibilizada em <a href="http://gitlab.squadra.com.br/luis.batista/template_sistemas_antt-2.0.git" title="template_sistemas_antt-2.0">http://gitlab.squadra.com.br/luis.batista/template_sistemas_antt-2.0.git</a>. Os arquivos Sass utilizados podem ser importados para versão final do sistema como forma de controle e visualização via console de regras CSS, mas sua importação é opcional, visto que os arquivos já foram compilados em CSS antes da entrega.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="d-sm-flex align-items-center">
+                            <h2>Acessibilidade</h2>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-4">
+                            <p>O código gerado foi validado pelas regras do <a href="w3c/w3c.rar" title="validaçao w3c"> w3c </a> pelo site <a href="https://validator.w3.org/" title="W3C"> https://validator.w3.org/</a> e pelas regras <a href="wcag/wcag.rar" title="validaçao WCAG"> WCAG 2.0 </a> validados pelo software <a href="https://www.totalvalidator.com/" title="WCAG">Total Validator</a>. Os relatórios de validação estão presentes em docs/wcag e docs/w3c.</p>
+                        </div>
+                        <div class="d-sm-flex align-items-center">
+                            <p>Nos relatórios de validação WCAG, o erro “Nest headings properly (H1 > H2 > H3)” acontece por hierarquia de escrita dos títulos. O ‘h1’ sempre se refere ao título principal do portal que é inserida posteriormente pela função ‘load’ do jquery (conforme dito no item 5. Master), não sendo visível pelo validador, que considera apenas o HTML escrito inicialmente e desconsidera o HTML gerado depois da página carregada. Em ambiente de desenvolvimento, este erro não deverá ocorrer, pois a estratégia de ‘include’ é outra.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!--JQUERY-->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <!-- BOOTSTRAP -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- TOGGLE EVENTS -->
+    <script src="../js/apply_toggle.js"></script>
+    <!-- MODAL -->
+    <script src="../js/apply_modal.js"></script>
+    <!-- PAGINATION -->
+    <script src="../js/apply_pagination.js"></script>
+    <!-- SELECT -->
+    <script src="../js/select2.min.js"></script>
+    <script src="../js/apply_select.js"></script>
+    <!-- ASIDE -->
+    <script src="../js/aside.js"></script>
+    <!-- DATE TIME PICKER -->
+    <script src="../js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="../js/apply_date.js"></script>
+    <!-- MASK -->
+    <script src="../js/jquery.mask.min.js"></script>
+    <script src="../js/apply_mask.js"></script>
+    <!-- TOASTR -->
+    <script src="../js/toastr.min.js"></script>
+    <script src="../js/apply_toastr.js"></script>
+    <!-- JQUERY VALIDATION -->
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/apply_validation.js"></script>
+    <!-- DUPLICATE CONTENT -->
+    <script src="../js/duplicate_content.js"></script>
+    <!-- ADD CONTENT -->
+    <script src="../js/add_content.js"></script>
+    <!-- CHART -->
+    <script src="../js/Chart.min.js"></script>
+    <script src="../js/apply_chart.js"></script>
+    <!-- TABS -->
+    <script src="../js/apply_tab.js"></script>
+    
+    <script type="text/javascript">
+      $(window).resize(function() {
+        var navHeight = $('#mainNav').children('.nav').innerHeight();
+        var windowHeight = $(window).innerHeight();  
+
+        if( navHeight >= windowHeight ){
+            $('html').css("height","auto");
+          }
+        else{
+              $('html').css("height","100%");
+          } 
+      }).resize();
+    </script>
+
+</body>
+</html>

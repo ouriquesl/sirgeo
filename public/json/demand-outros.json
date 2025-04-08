@@ -1,0 +1,9 @@
+{
+    "labels": ["Outros", "Demandas totais"],
+    "datasets": [
+        {
+            "data": [20, 100],
+            "backgroundColor": ["#66CC00","#D9D9D9"]
+        }
+    ]
+}

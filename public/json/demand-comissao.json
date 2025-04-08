@@ -1,0 +1,9 @@
+{
+    "labels": ["Comissao", "Demandas totais"],
+    "datasets": [
+        {
+            "data": [15, 100],
+            "backgroundColor": ["#FFCC00","#D9D9D9"]
+        }
+    ]
+}

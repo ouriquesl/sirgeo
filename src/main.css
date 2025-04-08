@@ -1,0 +1,264 @@
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 80px; /* ajustar para dar espaço para o footer */
+  left: 160px; /* ajustar para dar espaço para a barra lateral */
+  right: 0;
+  width: auto;
+}
+
+.ol-coordinates {
+  position: absolute;
+  bottom: 90px; /* ajuste a posição */
+  left: 100px; /* ajuste a posição */
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  z-index: 1000; /* garante que esteja acima do mapa */
+}
+
+span.lista-item {
+  font-size: small;
+}
+
+.sidenav-bar {
+  height: 100%; /* tamanho da altura */
+  width: 160px; /* ajuste da largura do sidebar */
+  position: fixed; /* posição fixa do sidebar */
+  z-index: 1; /* fica no topo */
+  top: 0; /* fica no topo */
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden; /* desabilita o controle de rolagem lateral */
+  padding-top: 20px;
+  scrollbar-gutter: stable;
+  scrollbar-color: lightgray white;
+  scrollbar-width: thin;
+}
+
+.ol-popup {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  padding: 10px; /* Reduzido para ajustar a tabela */
+  border-radius: 8px; /* Ajuste da borda */
+  border: 1px solid #cccccc;
+  min-width:  20vh; /* Largura mínima */
+  max-width: 60vh; /* Largura máxima ajustável */
+  max-height: 60vh; /* Altura máxima ajustável */
+  overflow-y: auto; /* Barra de rolagem se o conteúdo exceder */
+  cursor: move;
+}
+
+.ol-popup-content {
+  max-height: 60vh;
+  font-size: 12px; /* Tamanho da fonte reduzido */
+}
+
+.ol-popup-closer {
+  text-decoration: none;
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  color: #777;
+}
+
+.ol-popup-closer:after {
+  content: 'x';
+  font-size: 15px;
+}
+
+.ol-popup-closer:hover {
+  color: black;
+}
+
+.popup-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px; /* Tamanho da fonte reduzido */
+}
+
+.popup-table th,
+.popup-table td {
+  padding: 4px; /* Reduzido para ajustar a tabela */
+  border: 1px solid #dddddd;
+  text-align: left;
+}
+
+.popup-table th {
+  background-color: #f7f7f7;
+}
+
+@media (max-width: 768px) {
+  .ol-popup {
+    max-width: 90vw;
+  }
+}
+
+.map {
+  width: 100%;
+  height: calc(100vh - 80px); /* ajuste para garantir espaço para o rodapé */
+  position: relative; /* adicionado para contexto de posicionamento */
+}
+
+.layer-control, .measurement-control, .export-control {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ffffff;
+  padding: 10px 15px; /* Adjusted padding */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 1002; /* Garantir que esteja acima do mapa */
+  display: none; /* Hidden by default */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
+  max-width: 200px;
+}
+
+.layer-icon, .measurement-icon, .export-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.measurement-icon {
+  top: 60px; /* ajuste de posição para ícone medição */
+}
+
+.export-icon {
+  top: 110px; /* ajuste de posição para topo ícone */
+}
+
+.layer-icon:hover, .measurement-icon:hover, .export-icon:hover {
+  background: #f0f0f0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px; /* ajuste de posição para topo */
+  right: 5px; /* ajuste de posição para direita*/
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.close-btn:hover {
+  color: #ff0505;
+}
+
+.layer-control h4, .layer-control h5, .measurement-control h4, .measurement-control h5, .export-control h4 {
+  margin: 5px 0; /* Adjusted margin */
+}
+
+.layer-control label, .measurement-control label, .export-control label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.layer-control input[type="checkbox"], .measurement-control input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.layer-control input[type="range"], .measurement-control select, .export-control select {
+  width: calc(80% - 8px); /* ajuste de largura */
+  margin-left: 10px; /* ajuste de margem */
+}
+
+.layer-control {
+  font-size: 12px;
+}
+
+.base-layer-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.base-layer-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.base-layer-icon:hover {
+  border-color: #007bff;
+}
+
+.base-layer-option span {
+  font-size: 12px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.measurement-control p {
+  margin: 5px 0 10px; /* ajustar a margem */
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.version-block {
+  background-color: #ffffff;
+  padding: 10px;
+  color: #1c48e6;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+main {
+  padding-bottom: 80px; /* ajuste para garantir espaço para o rodapé */
+}
+
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 160px); /* ajustar para considerar a barra lateral */
+  left: 160px; /* ajustar para dar espaço para a barra lateral */
+  background-color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.ol-scale-line {
+  bottom: 65px;
+  top: auto;
+  right: auto;
+  left: 90px;
+}

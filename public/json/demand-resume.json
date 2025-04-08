@@ -1,0 +1,9 @@
+{
+    "labels": ["Demandas Abertas", "Demandas totais"],
+    "datasets": [
+        {
+            "data": [75, 100],
+            "backgroundColor": ["#99FFFF","#D9D9D9"]
+        }
+    ]
+}
