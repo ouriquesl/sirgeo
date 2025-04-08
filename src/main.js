@@ -453,7 +453,7 @@ function iniciarMapa(configFile) {
     const concessionariasSelecionadas = filtro['concessionariasSelecionadas'];
     const unidadesFederacaoSelecionadas = filtro['unidadesFederacaoSelecionadas'];
     const rodoviasSelecionadas = filtro['rodoviasSelecionadas'];
-    //const sentidosSelecionados = filtro['sentidosSelecionados'];
+    const sentidosSelecionados = filtro['sentidosSelecionados'];
 
     const cql_filter_concessionarias = Object.keys(concessionariasSelecionadas)
         .map(key => `concession = '${concessionariasSelecionadas[key]}'`)
