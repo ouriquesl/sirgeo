@@ -197,7 +197,7 @@ function iniciarMapa(configFile) {
     }
   }
 
-  /*// adiciona os sentidos
+  // adiciona os sentidos
   for (const element in configFile['sentidos']) {
     const sentido = element;
     const title = configFile['sentidos'][element].title;
@@ -229,7 +229,7 @@ function iniciarMapa(configFile) {
       }
       exibirLayers(layersSelecionados, filtro);
     }
-  }*/
+  }
 
 
   // adiciona os layers
@@ -467,10 +467,9 @@ function iniciarMapa(configFile) {
         .map(key => `rodovia = '${rodoviasSelecionadas[key]}'`)
         .join(' OR ');
 
-    /*const cql_filter_sentidos = Object.keys(sentidosSelecionados)
+    const cql_filter_sentidos = Object.keys(sentidosSelecionados)
         .map(key => `sentido = '${sentidosSelecionados[key]}'`)
-        .join(' OR ');*/
-
+        .join(' OR ');
     const cql_filter = [cql_filter_concessionarias, cql_filter_uf, cql_filter_rodovias]
         .filter(Boolean)
         .join(' AND ');
