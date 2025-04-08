@@ -92,7 +92,8 @@ function iniciarMapa(configFile) {
   const filtro = {
     concessionariasSelecionadas: {},
     unidadesFederacaoSelecionadas: {},
-    rodoviasSelecionadas: {}
+    rodoviasSelecionadas: {},
+    sentidosSelecionados: {}
   };
 
   // adiciona as concessionárias
@@ -469,8 +470,9 @@ function iniciarMapa(configFile) {
 
     const cql_filter_sentidos = Object.keys(sentidosSelecionados)
         .map(key => `sentido = '${sentidosSelecionados[key]}'`)
-        .join(' OR ');
-    const cql_filter = [cql_filter_concessionarias, cql_filter_uf, cql_filter_rodovias]
+        .join(' or ');
+
+    const cql_filter = [cql_filter_concessionarias, cql_filter_uf, cql_filter_rodovias, cql_filter_sentidos]
         .filter(Boolean)
         .join(' AND ');
 
